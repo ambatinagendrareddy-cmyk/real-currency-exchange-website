@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>World Currency Exchange</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<section id="loginPage" class="page">
+
+    <div class="login-container">
+
+        <div class="login-logo">
+            🌍
+        </div>
+
+        <h1>World Currency Exchange</h1>
+
+        <p class="login-subtitle">
+            Secure Currency Converter
+        </p>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+            <button type="submit"
+                    class="primary-btn">
+                Login
+            </button>
+
+        </form>
+
+        <p id="loginMessage"
+           class="form-message">
+        </p>
+
+        <p class="register-text">
+            Don't have an account?
+            <button id="showRegister"
+                    class="link-button">
+                Register
+            </button>
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     REGISTER PAGE
+===================================================== -->
+
+<section id="registerPage"
+         class="page hidden">
+
+    <div class="login-container">
+
+        <div class="login-logo">
+            🌍
+        </div>
+
+        <h1>Create Account</h1>
+
+        <p class="login-subtitle">
+            Register for World Currency Exchange
+        </p>
+
+        <form id="registerForm">
+
+            <div class="input-group">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Create password"
+                    minlength="6"
+                    required
+                >
+
+            </div>
+
+            <button type="submit"
+                    class="primary-btn">
+                Register
+            </button>
+
+        </form>
+
+        <p id="registerMessage"
+           class="form-message">
+        </p>
+
+        <p class="register-text">
+
+            Already have an account?
+
+            <button id="showLogin"
+                    class="link-button">
+                Login
+            </button>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
+
+<section id="mainPage"
+         class="hidden">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            🌍 World Currency Exchange
+        </div>
+
+        <nav>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#converter">
+                Converter
+            </a>
+
+            <a href="#rates">
+                Exchange Rates
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#contact">
+                Contact
+            </a>
+
+            <button id="logoutBtn"
+                    class="logout-btn">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =================================================
+         HOME
+    ================================================= -->
+
+    <section id="home"
+             class="hero">
+
+        <div class="hero-content">
+
+            <p class="welcome">
+                Welcome to World Currency Exchange
+            </p>
+
+            <h1>
+                Convert Currencies
+                <br>
+                Quickly & Easily
+            </h1>
+
+            <p>
+                Check currency conversion values and
+                exchange rates from around the world.
+            </p>
+
+            <a href="#converter"
+               class="hero-btn">
+                Start Converting
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CONVERTER
+    ================================================= -->
+
+    <section id="converter"
+             class="section">
+
+        <div class="section-title">
+
+            <h2>
+                Currency Converter
+            </h2>
+
+            <p>
+                Enter an amount and select currencies.
+            </p>
+
+        </div>
+
+
+        <div class="converter-box">
+
+            <div class="amount-box">
+
+                <label>
+                    Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter amount"
+                    value="1"
+                    min="0"
+                >
+
+            </div>
+
+
+            <div class="currency-row">
+
+                <!-- FROM -->
+
+                <div class="currency-box">
+
+                    <label>
+                        From
+                    </label>
+
+                    <div class="select-wrapper">
+
+                        <span id="fromFlag"
+                              class="flag">
+                            🇺🇸
+                        </span>
+
+                        <select id="fromCurrency">
+
+                            <option value="USD">
+                                USD - US Dollar
+                            </option>
+
+                            <option value="INR">
+                                INR - Indian Rupee
+                            </option>
+
+                            <option value="EUR">
+                                EUR - Euro
+                            </option>
+
+                            <option value="GBP">
+                                GBP - British Pound
+                            </option>
+
+                            <option value="JPY">
+                                JPY - Japanese Yen
+                            </option>
+
+                            <option value="KWD">
+                                KWD - Kuwaiti Dinar
+                            </option>
+
+                            <option value="CNY">
+                                CNY - Chinese Yuan
+                            </option>
+
+                            <option value="CAD">
+                                CAD - Canadian Dollar
+                            </option>
+
+                            <option value="AUD">
+                                AUD - Australian Dollar
+                            </option>
+
+                            <option value="AED">
+                                AED - UAE Dirham
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SWAP -->
+
+                <button id="swapBtn"
+                        class="swap-btn"
+                        type="button">
+                    ⇄
+                </button>
+
+
+                <!-- TO -->
+
+                <div class="currency-box">
+
+                    <label>
+                        To
+                    </label>
+
+                    <div class="select-wrapper">
+
+                        <span id="toFlag"
+                              class="flag">
+                            🇮🇳
+                        </span>
+
+                        <select id="toCurrency">
+
+                            <option value="INR">
+                                INR - Indian Rupee
+                            </option>
+
+                            <option value="USD">
+                                USD - US Dollar
+                            </option>
+
+                            <option value="EUR">
+                                EUR - Euro
+                            </option>
+
+                            <option value="GBP">
+                                GBP - British Pound
+                            </option>
+
+                            <option value="JPY">
+                                JPY - Japanese Yen
+                            </option>
+
+                            <option value="KWD">
+                                KWD - Kuwaiti Dinar
+                            </option>
+
+                            <option value="CNY">
+                                CNY - Chinese Yuan
+                            </option>
+
+                            <option value="CAD">
+                                CAD - Canadian Dollar
+                            </option>
+
+                            <option value="AUD">
+                                AUD - Australian Dollar
+                            </option>
+
+                            <option value="AED">
+                                AED - UAE Dirham
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONVERT BUTTON -->
+
+            <button id="convertBtn"
+                    class="convert-btn"
+                    type="button">
+
+                Convert Currency
+
+            </button>
+
+
+            <!-- RESULT -->
+
+            <div id="conversionResult"
+                 class="conversion-result">
+
+                <p class="result-placeholder">
+                    Enter an amount and click
+                    <strong>Convert Currency</strong>.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         EXCHANGE RATES
+    ================================================= -->
+
+    <section id="rates"
+             class="section rates-section">
+
+        <div class="section-title">
+
+            <h2>
+                Exchange Rates
+            </h2>
+
+            <p>
+                Reference rates against USD.
+            </p>
+
+        </div>
+
+        <div id="ratesContainer"
+             class="rates-grid">
+        </div>
+
+        <p id="ratesStatus"
+           class="rates-status">
+            Loading exchange rates...
+        </p>
+
+    </section>
+
+
+    <!-- =================================================
+         ABOUT
+    ================================================= -->
+
+    <section id="about"
+             class="section about-section">
+
+        <div class="section-title">
+
+            <h2>
+                About Us
+            </h2>
+
+        </div>
+
+        <div class="about-content">
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    💱
+                </div>
+
+                <h3>
+                    Currency Converter
+                </h3>
+
+                <p>
+                    World Currency Exchange is a
+                    currency converter web application
+                    designed to make currency conversion
+                    simple and convenient.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    🌎
+                </div>
+
+                <h3>
+                    Multiple Currencies
+                </h3>
+
+                <p>
+                    Convert between USD, INR, EUR, GBP,
+                    JPY, KWD, CNY, CAD, AUD and AED.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Easy to Use
+                </h3>
+
+                <p>
+                    Enter your amount, select the
+                    currencies and click the convert
+                    button to see the result.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CONTACT
+    ================================================= -->
+
+    <section id="contact"
+             class="section contact-section">
+
+        <div class="section-title">
+
+            <h2>
+                Contact Us
+            </h2>
+
+            <p>
+                Send your message directly to our Gmail.
+            </p>
+
+        </div>
+
+
+        <!-- CONTACT INFORMATION -->
+
+        <div class="contact-cards">
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    📧
+                </div>
+
+                <h3>
+                    Email
+                </h3>
+
+                <p>
+                    ambatinagendrareddy@gmail.com
+                </p>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    🌍
+                </div>
+
+                <h3>
+                    Application
+                </h3>
+
+                <p>
+                    World Currency Exchange
+                </p>
+
+            </div>
+
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    💱
+                </div>
+
+                <h3>
+                    Service
+                </h3>
+
+                <p>
+                    Currency Converter Web Application
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTACT FORM -->
+
+        <div class="contact-form-box">
+
+            <h3>
+                Send Us a Message
+            </h3>
+
+
+            <!--
+                IMPORTANT:
+                Replace the Gmail address below if needed.
+            -->
+
+            <form
+                id="contactForm"
+                action="https://formsubmit.co/ambatinagendrareddy@gmail.com"
+                method="POST"
+            >
+
+
+                <!-- EMAIL SUBJECT -->
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="New Message - World Currency Exchange"
+                >
+
+
+                <!-- REPLY TO -->
+
+                <input
+                    type="hidden"
+                    name="_replyto"
+                    id="replyTo"
+                >
+
+
+                <!-- EMAIL TEMPLATE -->
+
+                <input
+                    type="hidden"
+                    name="_template"
+                    value="table"
+                >
+
+
+                <!-- AFTER SUBMISSION -->
+
+                <input
+                    type="hidden"
+                    name="_captcha"
+                    value="false"
+                >
+
+
+                <!-- HONEY POT -->
+
+                <input
+                    type="text"
+                    name="_honey"
+                    style="display:none"
+                    tabindex="-1"
+                    autocomplete="off"
+                >
+
+
+                <!-- NAME -->
+
+                <label for="contactName">
+                    Your Name
+                </label>
+
+                <input
+                    type="text"
+                    id="contactName"
+                    name="name"
+                    placeholder="Your Name"
+                    required
+                    minlength="2"
+                >
+
+
+                <!-- EMAIL -->
+
+                <label for="contactEmail">
+                    Your Email
+                </label>
+
+                <input
+                    type="email"
+                    id="contactEmail"
+                    name="email"
+                    placeholder="Your Email"
+                    required
+                >
+
+
+                <!-- MESSAGE -->
+
+                <label for="contactMessage">
+                    Your Message
+                </label>
+
+                <textarea
+                    id="contactMessage"
+                    name="message"
+                    placeholder="Write your message..."
+                    rows="7"
+                    required
+                    minlength="5"
+                ></textarea>
+
+
+                <!-- SEND -->
+
+                <button
+                    type="submit"
+                    id="sendMessageBtn"
+                    class="send-message-btn"
+                >
+                    📧 Send Message
+                </button>
+
+            </form>
+
+
+            <!-- LOCAL SUCCESS RESULT -->
+
+            <div id="contactResult"
+                 class="contact-result">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================= -->
+
+    <footer class="footer">
+
+        <div>
+
+            <h3>
+                🌍 World Currency Exchange
+            </h3>
+
+            <p>
+                Currency Converter Web Application
+            </p>
+
+        </div>
+
+        <p>
+            © 2026 World Currency Exchange.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+</section>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

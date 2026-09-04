@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login - World Currency Exchange</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="login-page">
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                🌍
+            </div>
+
+            <h1>
+                World Currency Exchange
+            </h1>
+
+            <h2>
+                Login
+            </h2>
+
+            <p class="login-description">
+                Enter your details to access the currency exchange application.
+            </p>
+
+
+            <form id="loginForm">
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="loginName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="loginName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <p id="loginMessage"
+               class="login-message">
+            </p>
+
+
+            <div class="login-info">
+
+                <p>
+                    🔐 Secure Login
+                </p>
+
+                <p>
+                    💱 Access Currency Converter
+                </p>
+
+                <p>
+                    📊 View Live Exchange Rates
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
