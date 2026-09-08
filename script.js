@@ -1,12 +1,12 @@
-/* =====================================================
+/* =========================================================
    WORLD CURRENCY EXCHANGE
    COMPLETE JAVASCRIPT
-===================================================== */
+========================================================= */
 
 
-/* =====================================================
-   CURRENCY DATA
-===================================================== */
+/* =========================================================
+   CURRENCY INFORMATION
+========================================================= */
 
 const currencies = {
 
@@ -63,10 +63,10 @@ const currencies = {
 };
 
 
-/* =====================================================
-   FALLBACK EXCHANGE RATES
-   Relative to 1 USD
-===================================================== */
+/* =========================================================
+   FALLBACK RATES
+   USD IS THE BASE CURRENCY
+========================================================= */
 
 const fallbackRates = {
 
@@ -93,415 +93,681 @@ const fallbackRates = {
 };
 
 
-/* =====================================================
-   GLOBAL RATE VARIABLE
-===================================================== */
-
 let exchangeRates = {
     ...fallbackRates
 };
 
 
-/* =====================================================
-   PAGE ELEMENTS
-===================================================== */
-
-const loginPage =
-    document.getElementById("loginPage");
-
-const registerPage =
-    document.getElementById("registerPage");
-
-const mainPage =
-    document.getElementById("mainPage");
-
-
-/* =====================================================
-   CHECK LOGIN
-===================================================== */
-
-function checkLogin() {
-
-    const loggedIn =
-        localStorage.getItem("currencyLoggedIn");
-
-    if (loggedIn === "true") {
-
-        showMainPage();
-
-    } else {
-
-        showLoginPage();
-
-    }
-
-}
-
-
-/* =====================================================
-   SHOW LOGIN
-===================================================== */
-
-function showLoginPage() {
-
-    loginPage.classList.remove("hidden");
-
-    registerPage.classList.add("hidden");
-
-    mainPage.classList.add("hidden");
-
-}
-
-
-/* =====================================================
-   SHOW REGISTER
-===================================================== */
-
-function showRegisterPage() {
-
-    loginPage.classList.add("hidden");
-
-    registerPage.classList.remove("hidden");
-
-    mainPage.classList.add("hidden");
-
-}
-
-
-/* =====================================================
-   SHOW MAIN PAGE
-===================================================== */
-
-function showMainPage() {
-
-    loginPage.classList.add("hidden");
-
-    registerPage.classList.add("hidden");
-
-    mainPage.classList.remove("hidden");
-
-}
-
-
-/* =====================================================
-   REGISTER
-===================================================== */
-
-const registerForm =
-    document.getElementById("registerForm");
-
-
-registerForm.addEventListener(
-    "submit",
-    function(event) {
-
-        event.preventDefault();
-
-
-        const name =
-            document.getElementById(
-                "registerName"
-            ).value.trim();
-
-
-        const email =
-            document.getElementById(
-                "registerEmail"
-            ).value.trim();
-
-
-        const password =
-            document.getElementById(
-                "registerPassword"
-            ).value;
-
-
-        if (password.length < 6) {
-
-            showRegisterMessage(
-                "Password must contain at least 6 characters.",
-                "red"
-            );
-
-            return;
-        }
-
-
-        const user = {
-
-            name: name,
-
-            email: email,
-
-            password: password
-
-        };
-
-
-        localStorage.setItem(
-            "currencyUser",
-            JSON.stringify(user)
-        );
-
-
-        showRegisterMessage(
-            "✓ Registration successful. You can now login.",
-            "green"
-        );
-
-
-        setTimeout(
-            function() {
-
-                document.getElementById(
-                    "loginEmail"
-                ).value = email;
-
-                showLoginPage();
-
-            },
-            1200
-        );
-
-    }
-);
-
-
-/* =====================================================
-   REGISTER MESSAGE
-===================================================== */
-
-function showRegisterMessage(
-    message,
-    color
-) {
-
-    const element =
-        document.getElementById(
-            "registerMessage"
-        );
-
-    element.textContent = message;
-
-    element.style.color =
-        color === "green"
-            ? "#16823b"
-            : "#d62828";
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
+/* =========================================================
+   LOGIN PAGE ELEMENTS
+========================================================= */
 
 const loginForm =
     document.getElementById("loginForm");
 
+const loginName =
+    document.getElementById("loginName");
 
-loginForm.addEventListener(
-    "submit",
-    function(event) {
+const loginEmail =
+    document.getElementById("loginEmail");
 
-        event.preventDefault();
+const loginPassword =
+    document.getElementById("loginPassword");
 
-
-        const email =
-            document.getElementById(
-                "loginEmail"
-            ).value.trim();
-
-
-        const password =
-            document.getElementById(
-                "loginPassword"
-            ).value;
+const loginMessage =
+    document.getElementById("loginMessage");
 
 
-        const savedUser =
-            localStorage.getItem(
-                "currencyUser"
-            );
+/* =========================================================
+   LOGIN
+========================================================= */
+
+if (loginForm) {
+
+    loginForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
 
 
-        /* DEMO ACCOUNT */
+            const name =
+                loginName.value.trim();
 
-        if (
-            email === "admin@gmail.com" &&
-            password === "admin123"
-        ) {
+            const email =
+                loginEmail.value
+                    .trim()
+                    .toLowerCase();
 
-            localStorage.setItem(
-                "currencyLoggedIn",
-                "true"
-            );
-
-            showMainPage();
-
-            loadExchangeRates();
-
-            return;
-        }
+            const password =
+                loginPassword.value.trim();
 
 
-        /* REGISTERED USER */
+            /* NAME */
 
-        if (!savedUser) {
+            if (name.length < 2) {
+
+                showLoginMessage(
+                    "Please enter your full name.",
+                    "error"
+                );
+
+                loginName.focus();
+
+                return;
+            }
+
+
+            /* EMAIL */
+
+            if (!validateEmail(email)) {
+
+                showLoginMessage(
+                    "Please enter a valid email address.",
+                    "error"
+                );
+
+                loginEmail.focus();
+
+                return;
+            }
+
+
+            /* PASSWORD */
+
+            if (password.length < 6) {
+
+                showLoginMessage(
+                    "Password must contain at least 6 characters.",
+                    "error"
+                );
+
+                loginPassword.focus();
+
+                return;
+            }
+
+
+            /* =================================================
+               DEMO ADMIN ACCOUNT
+            ================================================= */
+
+            if (
+                email === "admin@gmail.com" &&
+                password === "admin123"
+            ) {
+
+                saveLogin(
+                    name,
+                    email
+                );
+
+
+                showLoginMessage(
+                    "Login successful! Opening application...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "index.html";
+
+                    },
+                    700
+                );
+
+
+                return;
+            }
+
+
+            /* =================================================
+               REGISTERED USER
+            ================================================= */
+
+            let registeredUser = null;
+
+
+            try {
+
+                registeredUser =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "currencyUser"
+                        )
+                    );
+
+            } catch (error) {
+
+                registeredUser = null;
+            }
+
+
+            if (
+                registeredUser &&
+                registeredUser.email === email &&
+                registeredUser.password === password
+            ) {
+
+                saveLogin(
+                    registeredUser.name,
+                    registeredUser.email
+                );
+
+
+                showLoginMessage(
+                    "Login successful! Opening application...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "index.html";
+
+                    },
+                    700
+                );
+
+
+                return;
+            }
+
+
+            /* INVALID */
 
             showLoginMessage(
-                "No account found. Please register first.",
-                "red"
-            );
-
-            return;
-
-        }
-
-
-        const user =
-            JSON.parse(savedUser);
-
-
-        if (
-            email === user.email &&
-            password === user.password
-        ) {
-
-            localStorage.setItem(
-                "currencyLoggedIn",
-                "true"
-            );
-
-
-            showLoginMessage(
-                "✓ Login successful.",
-                "green"
-            );
-
-
-            setTimeout(
-                function() {
-
-                    showMainPage();
-
-                    loadExchangeRates();
-
-                },
-                500
-            );
-
-        } else {
-
-            showLoginMessage(
-                "❌ Invalid email or password.",
-                "red"
+                "Invalid email or password.",
+                "error"
             );
 
         }
-
-    }
-);
-
-
-/* =====================================================
-   LOGIN MESSAGE
-===================================================== */
-
-function showLoginMessage(
-    message,
-    color
-) {
-
-    const element =
-        document.getElementById(
-            "loginMessage"
-        );
-
-    element.textContent = message;
-
-    element.style.color =
-        color === "green"
-            ? "#16823b"
-            : "#d62828";
-
+    );
 }
 
 
-/* =====================================================
-   SHOW REGISTER BUTTON
-===================================================== */
+/* =========================================================
+   SAVE LOGIN
+========================================================= */
 
-document.getElementById(
-    "showRegister"
-).addEventListener(
-    "click",
-    showRegisterPage
-);
+function saveLogin(name, email) {
+
+    localStorage.setItem(
+        "currencyLoggedIn",
+        "true"
+    );
+
+    localStorage.setItem(
+        "currencyUserName",
+        name
+    );
+
+    localStorage.setItem(
+        "currencyUserEmail",
+        email
+    );
+}
 
 
-/* =====================================================
-   SHOW LOGIN BUTTON
-===================================================== */
+/* =========================================================
+   LOGIN MESSAGE
+========================================================= */
 
-document.getElementById(
-    "showLogin"
-).addEventListener(
-    "click",
-    showLoginPage
-);
+function showLoginMessage(
+    message,
+    type
+) {
+
+    if (!loginMessage) {
+        return;
+    }
 
 
-/* =====================================================
-   LOGOUT
-===================================================== */
+    loginMessage.textContent =
+        message;
 
-document.getElementById(
-    "logoutBtn"
-).addEventListener(
-    "click",
-    function() {
 
-        localStorage.removeItem(
-            "currencyLoggedIn"
+    loginMessage.className =
+        "login-message " + type;
+}
+
+
+/* =========================================================
+   EMAIL VALIDATION
+========================================================= */
+
+function validateEmail(email) {
+
+    const pattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return pattern.test(email);
+}
+
+
+/* =========================================================
+   REGISTER SUPPORT
+========================================================= */
+
+const registerForm =
+    document.getElementById(
+        "registerForm"
+    );
+
+
+if (registerForm) {
+
+    registerForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const nameElement =
+                document.getElementById(
+                    "registerName"
+                );
+
+            const emailElement =
+                document.getElementById(
+                    "registerEmail"
+                );
+
+            const passwordElement =
+                document.getElementById(
+                    "registerPassword"
+                );
+
+
+            if (
+                !nameElement ||
+                !emailElement ||
+                !passwordElement
+            ) {
+
+                return;
+            }
+
+
+            const name =
+                nameElement.value.trim();
+
+            const email =
+                emailElement.value
+                    .trim()
+                    .toLowerCase();
+
+            const password =
+                passwordElement.value.trim();
+
+
+            if (name.length < 2) {
+
+                alert(
+                    "Please enter your full name."
+                );
+
+                return;
+            }
+
+
+            if (!validateEmail(email)) {
+
+                alert(
+                    "Please enter a valid email address."
+                );
+
+                return;
+            }
+
+
+            if (password.length < 6) {
+
+                alert(
+                    "Password must contain at least 6 characters."
+                );
+
+                return;
+            }
+
+
+            const user = {
+
+                name: name,
+
+                email: email,
+
+                password: password
+
+            };
+
+
+            localStorage.setItem(
+                "currencyUser",
+                JSON.stringify(user)
+            );
+
+
+            alert(
+                "Registration successful! Please login."
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuBtn =
+    document.getElementById(
+        "menubtn"
+    );
+
+const navMenu =
+    document.getElementById(
+        "navmenu"
+    );
+
+
+function toggleMenu() {
+
+    if (
+        !menuBtn ||
+        !navMenu
+    ) {
+
+        return;
+    }
+
+
+    navMenu.classList.toggle(
+        "active"
+    );
+
+
+    const isOpen =
+        navMenu.classList.contains(
+            "active"
         );
 
-        showLoginPage();
 
-        document.getElementById(
-            "loginPassword"
-        ).value = "";
+    if (isOpen) {
 
+        menuBtn.textContent = "✕";
+
+        menuBtn.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+    } else {
+
+        menuBtn.textContent = "☰";
+
+        menuBtn.setAttribute(
+            "aria-expanded",
+            "false"
+        );
     }
-);
+}
 
 
-/* =====================================================
+/*
+   Supports:
+   onclick="toggle()"
+*/
+
+function toggle() {
+
+    toggleMenu();
+}
+
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+if (menuBtn) {
+
+    menuBtn.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            /*
+               Do not call toggleMenu here if
+               inline onclick="toggle()" is active,
+               otherwise it toggles twice.
+            */
+
+        }
+    );
+}
+
+
+/* =========================================================
+   CLOSE MOBILE MENU AFTER LINK CLICK
+========================================================= */
+
+if (navMenu) {
+
+    const navLinks =
+        navMenu.querySelectorAll(
+            "a"
+        );
+
+
+    navLinks.forEach(
+        function (link) {
+
+            link.addEventListener(
+                "click",
+                function () {
+
+                    navMenu.classList.remove(
+                        "active"
+                    );
+
+
+                    if (menuBtn) {
+
+                        menuBtn.textContent =
+                            "☰";
+
+                        menuBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+                    }
+
+                }
+            );
+
+        }
+    );
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
+
+
+if (logoutBtn) {
+
+    logoutBtn.addEventListener(
+        "click",
+        function () {
+
+            localStorage.removeItem(
+                "currencyLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "currencyUserName"
+            );
+
+            localStorage.removeItem(
+                "currencyUserEmail"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+}
+
+
+/* =========================================================
    CONVERTER ELEMENTS
-===================================================== */
+========================================================= */
 
 const amountInput =
-    document.getElementById("amount");
+    document.getElementById(
+        "amount"
+    );
 
 const fromCurrency =
-    document.getElementById("fromCurrency");
+    document.getElementById(
+        "fromCurrency"
+    );
 
 const toCurrency =
-    document.getElementById("toCurrency");
+    document.getElementById(
+        "toCurrency"
+    );
 
 const convertBtn =
-    document.getElementById("convertBtn");
+    document.getElementById(
+        "convertBtn"
+    );
 
 const conversionResult =
     document.getElementById(
         "conversionResult"
     );
 
+const swapBtn =
+    document.getElementById(
+        "swapBtn"
+    );
 
-/* =====================================================
-   FLAG UPDATE
-===================================================== */
+const fromFlag =
+    document.getElementById(
+        "fromFlag"
+    );
+
+const toFlag =
+    document.getElementById(
+        "toFlag"
+    );
+
+
+/* =========================================================
+   UPDATE FLAGS
+========================================================= */
 
 function updateFlags() {
+
+    if (
+        fromCurrency &&
+        fromFlag
+    ) {
+
+        const from =
+            currencies[
+                fromCurrency.value
+            ];
+
+
+        if (from) {
+
+            fromFlag.textContent =
+                from.flag;
+        }
+    }
+
+
+    if (
+        toCurrency &&
+        toFlag
+    ) {
+
+        const to =
+            currencies[
+                toCurrency.value
+            ];
+
+
+        if (to) {
+
+            toFlag.textContent =
+                to.flag;
+        }
+    }
+}
+
+
+/* =========================================================
+   CURRENCY CONVERSION
+========================================================= */
+
+function convertCurrency() {
+
+    if (
+        !amountInput ||
+        !fromCurrency ||
+        !toCurrency ||
+        !conversionResult
+    ) {
+
+        return;
+    }
+
+
+    const amount =
+        parseFloat(
+            amountInput.value
+        );
+
+
+    /* INVALID AMOUNT */
+
+    if (
+        Number.isNaN(amount) ||
+        amount <= 0
+    ) {
+
+        conversionResult.textContent =
+            "Please enter a valid amount.";
+
+        conversionResult.className =
+            "conversion-result error";
+
+        return;
+    }
+
 
     const from =
         fromCurrency.value;
@@ -510,192 +776,235 @@ function updateFlags() {
         toCurrency.value;
 
 
-    document.getElementById(
-        "fromFlag"
-    ).textContent =
-        currencies[from].flag;
+    const fromRate =
+        exchangeRates[from];
+
+    const toRate =
+        exchangeRates[to];
 
 
-    document.getElementById(
-        "toFlag"
-    ).textContent =
-        currencies[to].flag;
+    if (
+        typeof fromRate !== "number" ||
+        typeof toRate !== "number"
+    ) {
 
-}
+        conversionResult.textContent =
+            "Exchange rate is currently unavailable.";
 
+        conversionResult.className =
+            "conversion-result error";
 
-fromCurrency.addEventListener(
-    "change",
-    updateFlags
-);
-
-
-toCurrency.addEventListener(
-    "change",
-    updateFlags
-);
-
-
-/* =====================================================
-   CONVERT CURRENCY
-===================================================== */
-
-convertBtn.addEventListener(
-    "click",
-    function() {
-
-        const amount =
-            parseFloat(
-                amountInput.value
-            );
-
-
-        if (
-            isNaN(amount) ||
-            amount < 0
-        ) {
-
-            conversionResult.innerHTML = `
-                <div class="result-card">
-                    <p style="color:#d62828;">
-                        ❌ Please enter a valid amount.
-                    </p>
-                </div>
-            `;
-
-            return;
-        }
-
-
-        const from =
-            fromCurrency.value;
-
-        const to =
-            toCurrency.value;
-
-
-        const fromRate =
-            exchangeRates[from];
-
-        const toRate =
-            exchangeRates[to];
-
-
-        const result =
-            (amount / fromRate)
-            * toRate;
-
-
-        const oneUnit =
-            toRate / fromRate;
-
-
-        conversionResult.innerHTML = `
-
-            <div class="result-card">
-
-                <div>
-                    ${currencies[from].flag}
-                    ${from}
-                </div>
-
-                <div class="main-result">
-
-                    ${formatNumber(amount)}
-                    ${from}
-
-                    =
-
-                    ${formatNumber(result)}
-                    ${to}
-
-                    ${currencies[to].flag}
-
-                </div>
-
-                <p class="rate-text">
-
-                    1 ${from}
-                    =
-                    ${formatNumber(oneUnit)}
-                    ${to}
-
-                </p>
-
-            </div>
-
-        `;
-
+        return;
     }
-);
 
 
-/* =====================================================
-   FORMAT NUMBER
-===================================================== */
+    /*
+       Convert FROM currency to USD
+    */
 
-function formatNumber(number) {
-
-    return Number(number).toLocaleString(
-        "en-US",
-        {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 4
-        }
-    );
-
-}
+    const amountInUSD =
+        amount / fromRate;
 
 
-/* =====================================================
-   SWAP CURRENCIES
-===================================================== */
+    /*
+       Convert USD to TO currency
+    */
 
-document.getElementById(
-    "swapBtn"
-).addEventListener(
-    "click",
-    function() {
-
-        const oldFrom =
-            fromCurrency.value;
+    const result =
+        amountInUSD * toRate;
 
 
-        fromCurrency.value =
-            toCurrency.value;
+    if (!Number.isFinite(result)) {
 
+        conversionResult.textContent =
+            "Unable to calculate the conversion.";
 
-        toCurrency.value =
-            oldFrom;
+        conversionResult.className =
+            "conversion-result error";
 
-
-        updateFlags();
-
+        return;
     }
-);
 
 
-/* =====================================================
-   LIVE EXCHANGE RATES
-===================================================== */
-
-async function loadExchangeRates() {
-
-    const status =
-        document.getElementById(
-            "ratesStatus"
+    const formattedResult =
+        result.toLocaleString(
+            "en-US",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 4
+            }
         );
 
 
-    status.textContent =
-        "Loading exchange rates...";
+    const formattedAmount =
+        amount.toLocaleString(
+            "en-US",
+            {
+                maximumFractionDigits: 4
+            }
+        );
+
+
+    conversionResult.innerHTML =
+
+        "<strong>" +
+        formattedAmount +
+        " " +
+        from +
+        "</strong>" +
+
+        " = " +
+
+        "<strong>" +
+        formattedResult +
+        " " +
+        to +
+        "</strong>";
+
+
+    conversionResult.className =
+        "conversion-result success";
+}
+
+
+/* =========================================================
+   CONVERT BUTTON
+========================================================= */
+
+if (convertBtn) {
+
+    convertBtn.addEventListener(
+        "click",
+        function () {
+
+            convertCurrency();
+
+        }
+    );
+}
+
+
+/* =========================================================
+   ENTER KEY CONVERSION
+========================================================= */
+
+if (amountInput) {
+
+    amountInput.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                event.preventDefault();
+
+                convertCurrency();
+            }
+
+        }
+    );
+}
+
+
+/* =========================================================
+   CURRENCY CHANGE
+========================================================= */
+
+if (fromCurrency) {
+
+    fromCurrency.addEventListener(
+        "change",
+        function () {
+
+            updateFlags();
+
+        }
+    );
+}
+
+
+if (toCurrency) {
+
+    toCurrency.addEventListener(
+        "change",
+        function () {
+
+            updateFlags();
+
+        }
+    );
+}
+
+
+/* =========================================================
+   SWAP
+========================================================= */
+
+if (swapBtn) {
+
+    swapBtn.addEventListener(
+        "click",
+        function () {
+
+            if (
+                !fromCurrency ||
+                !toCurrency
+            ) {
+
+                return;
+            }
+
+
+            const oldFrom =
+                fromCurrency.value;
+
+
+            fromCurrency.value =
+                toCurrency.value;
+
+
+            toCurrency.value =
+                oldFrom;
+
+
+            updateFlags();
+
+
+            if (
+                amountInput &&
+                amountInput.value
+            ) {
+
+                convertCurrency();
+            }
+
+        }
+    );
+}
+
+
+/* =========================================================
+   LOAD LIVE EXCHANGE RATES
+========================================================= */
+
+async function loadLiveRates() {
+
+    const rateStatus =
+        document.getElementById(
+            "rateStatus"
+        );
 
 
     try {
 
-        /*
-         * Free public API.
-         */
+        if (rateStatus) {
+
+            rateStatus.textContent =
+                "Loading live exchange rates...";
+        }
+
 
         const response =
             await fetch(
@@ -706,9 +1015,8 @@ async function loadExchangeRates() {
         if (!response.ok) {
 
             throw new Error(
-                "Network error"
+                "Exchange rate request failed."
             );
-
         }
 
 
@@ -717,145 +1025,202 @@ async function loadExchangeRates() {
 
 
         if (
-            data &&
-            data.rates
+            !data ||
+            !data.rates
         ) {
 
-            Object.keys(
-                fallbackRates
-            ).forEach(
-                function(currency) {
-
-                    if (
-                        data.rates[currency]
-                    ) {
-
-                        exchangeRates[currency] =
-                            data.rates[currency];
-
-                    }
-
-                }
-            );
-
-
-            status.textContent =
-                "✓ Exchange rates updated successfully.";
-
-
-            displayRates();
-
-        } else {
-
             throw new Error(
-                "Invalid API response"
+                "Invalid exchange rate data."
             );
+        }
 
+
+        exchangeRates = {
+
+            USD: 1,
+
+            INR:
+                Number(data.rates.INR)
+                || fallbackRates.INR,
+
+            EUR:
+                Number(data.rates.EUR)
+                || fallbackRates.EUR,
+
+            GBP:
+                Number(data.rates.GBP)
+                || fallbackRates.GBP,
+
+            JPY:
+                Number(data.rates.JPY)
+                || fallbackRates.JPY,
+
+            KWD:
+                Number(data.rates.KWD)
+                || fallbackRates.KWD,
+
+            CNY:
+                Number(data.rates.CNY)
+                || fallbackRates.CNY,
+
+            CAD:
+                Number(data.rates.CAD)
+                || fallbackRates.CAD,
+
+            AUD:
+                Number(data.rates.AUD)
+                || fallbackRates.AUD,
+
+            AED:
+                Number(data.rates.AED)
+                || fallbackRates.AED
+
+        };
+
+
+        displayExchangeRates();
+
+
+        if (rateStatus) {
+
+            rateStatus.textContent =
+                "✓ Live exchange rates loaded successfully.";
+
+        }
+
+
+        /*
+           Recalculate if amount is already entered.
+        */
+
+        if (
+            amountInput &&
+            amountInput.value
+        ) {
+
+            convertCurrency();
         }
 
     }
 
     catch (error) {
 
-        /*
-         * If internet/API is unavailable,
-         * use fallback rates.
-         */
+        console.warn(
+            "Live exchange rates unavailable:",
+            error
+        );
+
 
         exchangeRates = {
             ...fallbackRates
         };
 
 
-        status.textContent =
-            "Using reference exchange rates. Live rates are temporarily unavailable.";
+        displayExchangeRates();
 
-        displayRates();
+
+        if (rateStatus) {
+
+            rateStatus.textContent =
+                "Using backup exchange rates. Live rates are temporarily unavailable.";
+
+        }
 
     }
 
 }
 
 
-/* =====================================================
-   DISPLAY EXCHANGE RATES
-===================================================== */
+/* =========================================================
+   DISPLAY EXCHANGE RATE CARDS
+========================================================= */
 
-function displayRates() {
+function displayExchangeRates() {
 
-    const container =
+    const ratesContainer =
         document.getElementById(
             "ratesContainer"
         );
 
 
-    container.innerHTML = "";
+    if (!ratesContainer) {
+
+        return;
+    }
 
 
-    const currenciesToShow = [
-        "INR",
-        "EUR",
-        "GBP",
-        "JPY",
-        "KWD",
-        "CNY",
-        "CAD",
-        "AUD",
-        "AED"
-    ];
+    ratesContainer.innerHTML = "";
 
 
-    currenciesToShow.forEach(
-        function(currency) {
+    Object.keys(currencies)
+        .forEach(
+            function (code) {
 
-            const rate =
-                exchangeRates[currency];
+                const rate =
+                    exchangeRates[code];
 
 
-            const card =
-                document.createElement(
-                    "div"
+                if (
+                    typeof rate !==
+                    "number"
+                ) {
+
+                    return;
+                }
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "rate-card";
+
+
+                const flag =
+                    currencies[code].flag;
+
+                const name =
+                    currencies[code].name;
+
+
+                card.innerHTML = `
+
+                    <div class="rate-flag">
+                        ${flag}
+                    </div>
+
+                    <h3>
+                        ${code}
+                    </h3>
+
+                    <p>
+                        ${name}
+                    </p>
+
+                    <strong>
+                        1 USD =
+                        ${rate.toFixed(4)}
+                        ${code}
+                    </strong>
+
+                `;
+
+
+                ratesContainer.appendChild(
+                    card
                 );
 
-
-            card.className =
-                "rate-card";
-
-
-            card.innerHTML = `
-
-                <div class="rate-flag">
-                    ${currencies[currency].flag}
-                </div>
-
-                <h3>
-                    ${currency}
-                </h3>
-
-                <p>
-                    ${currencies[currency].name}
-                </p>
-
-                <div class="rate-value">
-                    1 USD =
-                    ${formatNumber(rate)}
-                    ${currency}
-                </div>
-
-            `;
-
-
-            container.appendChild(card);
-
-        }
-    );
-
+            }
+        );
 }
 
 
-/* =====================================================
+/* =========================================================
    CONTACT FORM
-===================================================== */
+========================================================= */
 
 const contactForm =
     document.getElementById(
@@ -863,191 +1228,141 @@ const contactForm =
     );
 
 
-contactForm.addEventListener(
-    "submit",
-    function(event) {
+if (contactForm) {
 
-        const name =
-            document.getElementById(
-                "contactName"
-            ).value.trim();
+    contactForm.addEventListener(
+        "submit",
+        function () {
 
-
-        const email =
-            document.getElementById(
-                "contactEmail"
-            ).value.trim();
+            const sendMessageBtn =
+                document.getElementById(
+                    "sendMessageBtn"
+                );
 
 
-        const message =
-            document.getElementById(
-                "contactMessage"
-            ).value.trim();
+            const contactResult =
+                document.getElementById(
+                    "contactResult"
+                );
 
+
+            if (sendMessageBtn) {
+
+                sendMessageBtn.textContent =
+                    "Sending...";
+
+                sendMessageBtn.disabled =
+                    true;
+            }
+
+
+            if (contactResult) {
+
+                contactResult.textContent =
+                    "Sending your message...";
+            }
+
+        }
+    );
+}
+
+
+/* =========================================================
+   SMOOTH NAVIGATION
+========================================================= */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(
+        function (link) {
+
+            link.addEventListener(
+                "click",
+                function (event) {
+
+                    const targetId =
+                        this.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        !targetId ||
+                        targetId === "#"
+                    ) {
+
+                        return;
+                    }
+
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+
+                    if (target) {
+
+                        event.preventDefault();
+
+
+                        target.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initializeApplication() {
+
+    updateFlags();
+
+    displayExchangeRates();
+
+    loadLiveRates();
+
+}
+
+
+/* =========================================================
+   PAGE LOAD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        updateFlags();
+
+        displayExchangeRates();
+
+        /*
+           Only load live rates when the
+           currency application exists.
+        */
 
         if (
-            name.length < 2 ||
-            !email ||
-            message.length < 5
+            document.getElementById(
+                "ratesContainer"
+            )
         ) {
 
-            event.preventDefault();
+            loadLiveRates();
 
-            showContactResult(
-                "❌ Please enter all details correctly.",
-                false
-            );
-
-            return;
         }
-
-
-        /*
-         * Put visitor email into Reply-To.
-         */
-
-        document.getElementById(
-            "replyTo"
-        ).value = email;
-
-
-        /*
-         * IMPORTANT:
-         *
-         * We DO NOT call:
-         *
-         * event.preventDefault()
-         *
-         * here.
-         *
-         * The browser must submit the form
-         * to FormSubmit.
-         */
-
-
-        const sendButton =
-            document.getElementById(
-                "sendMessageBtn"
-            );
-
-
-        sendButton.disabled = true;
-
-        sendButton.textContent =
-            "Sending Message...";
-
-
-        /*
-         * Show message on current page.
-         */
-
-        showContactResult(
-            `
-                <div class="contact-success">
-
-                    <h4>
-                        ✓ Message Submitted
-                    </h4>
-
-                    <p>
-                        Thank you,
-                        <strong>
-                            ${escapeHTML(name)}
-                        </strong>.
-                    </p>
-
-                    <p>
-                        Your message is being
-                        sent to:
-                    </p>
-
-                    <p>
-                        <strong>
-                            ambatinagendrareddy@gmail.com
-                        </strong>
-                    </p>
-
-                </div>
-            `,
-            true
-        );
 
     }
 );
-
-
-/* =====================================================
-   CONTACT RESULT
-===================================================== */
-
-function showContactResult(
-    message,
-    success
-) {
-
-    const result =
-        document.getElementById(
-            "contactResult"
-        );
-
-
-    result.innerHTML =
-        success
-            ? message
-            : `<div style="
-                    color:#d62828;
-                    padding:15px;
-                    background:#fff0f0;
-                    border-radius:8px;
-                ">
-                    ${message}
-               </div>`;
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(value) {
-
-    return value
-        .replace(/&/g, "&amp;")
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-updateFlags();
-
-checkLogin();
-
-if (
-    localStorage.getItem(
-        "currencyLoggedIn"
-    ) === "true"
-) {
-
-    loadExchangeRates();
-
-}

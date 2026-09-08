@@ -1,6 +1,12 @@
-/* =====================================================
+/* =========================================================
+   WORLD CURRENCY EXCHANGE
+   COMPLETE RESPONSIVE CSS
+========================================================= */
+
+
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 * {
     margin: 0;
@@ -20,7 +26,7 @@ body {
         Helvetica,
         sans-serif;
 
-    background: #f4f8fb;
+    background: #f4f7fb;
 
     color: #222;
 
@@ -28,16 +34,19 @@ body {
 }
 
 
-/* =====================================================
-   COMMON
-===================================================== */
-
-.hidden {
-    display: none !important;
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
 }
 
 
-.page {
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+.login-page {
     min-height: 100vh;
 
     display: flex;
@@ -51,262 +60,43 @@ body {
     background:
         linear-gradient(
             135deg,
-            #0077b6,
-            #00b4d8,
-            #90e0ef
+            #0f2027,
+            #203a43,
+            #2c5364
         );
 }
 
 
-/* =====================================================
-   LOGIN
-===================================================== */
-
 .login-container {
     width: 100%;
 
-    max-width: 450px;
+    max-width: 480px;
+}
 
-    background: white;
 
-    padding: 40px;
+.login-card {
+    width: 100%;
 
-    border-radius: 20px;
+    padding: 40px 35px;
+
+    background: #ffffff;
+
+    border-radius: 22px;
 
     box-shadow:
-        0 20px 50px
-        rgba(0, 0, 0, 0.20);
+        0 25px 60px
+        rgba(0, 0, 0, 0.28);
 
     text-align: center;
 }
 
 
 .login-logo {
-    font-size: 60px;
+    width: 85px;
 
-    margin-bottom: 10px;
-}
+    height: 85px;
 
-
-.login-container h1 {
-    color: #0077b6;
-
-    font-size: 28px;
-
-    margin-bottom: 5px;
-}
-
-
-.login-subtitle {
-    color: #777;
-
-    margin-bottom: 30px;
-}
-
-
-.input-group {
-    text-align: left;
-
-    margin-bottom: 18px;
-}
-
-
-.input-group label {
-    display: block;
-
-    font-weight: bold;
-
-    margin-bottom: 7px;
-}
-
-
-.input-group input {
-    width: 100%;
-
-    padding: 14px;
-
-    border: 1px solid #ccd6dd;
-
-    border-radius: 8px;
-
-    font-size: 16px;
-
-    outline: none;
-}
-
-
-.input-group input:focus {
-    border-color: #0077b6;
-
-    box-shadow:
-        0 0 5px
-        rgba(0,119,182,0.2);
-}
-
-
-.primary-btn {
-    width: 100%;
-
-    border: none;
-
-    padding: 14px;
-
-    border-radius: 8px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #0077b6,
-            #0096c7
-        );
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-
-.primary-btn:hover {
-    opacity: 0.9;
-}
-
-
-.register-text {
-    margin-top: 20px;
-
-    color: #666;
-}
-
-
-.link-button {
-    border: none;
-
-    background: none;
-
-    color: #0077b6;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    font-size: 15px;
-}
-
-
-.form-message {
-    margin-top: 15px;
-
-    font-weight: bold;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-.header {
-    position: sticky;
-
-    top: 0;
-
-    z-index: 1000;
-
-    background:
-        linear-gradient(
-            90deg,
-            #0077b6,
-            #0096c7,
-            #00b4d8
-        );
-
-    color: white;
-
-    padding:
-        16px
-        6%;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    box-shadow:
-        0 3px 15px
-        rgba(0,0,0,0.15);
-}
-
-
-.logo {
-    font-size: 22px;
-
-    font-weight: bold;
-}
-
-
-nav {
-    display: flex;
-
-    align-items: center;
-
-    gap: 20px;
-
-    flex-wrap: wrap;
-}
-
-
-nav a {
-    color: white;
-
-    text-decoration: none;
-
-    font-weight: bold;
-
-    font-size: 14px;
-}
-
-
-nav a:hover {
-    color: #ffe066;
-}
-
-
-.logout-btn {
-    border: 1px solid white;
-
-    background: transparent;
-
-    color: white;
-
-    padding:
-        8px
-        15px;
-
-    border-radius: 20px;
-
-    cursor: pointer;
-
-    font-weight: bold;
-}
-
-
-.logout-btn:hover {
-    background: white;
-
-    color: #0077b6;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-    min-height: 620px;
+    margin: 0 auto 18px;
 
     display: flex;
 
@@ -314,773 +104,1268 @@ nav a:hover {
 
     justify-content: center;
 
-    text-align: center;
+    border-radius: 50%;
 
-    padding: 60px 20px;
+    background: #eef5ff;
+
+    font-size: 48px;
+}
+
+
+.login-card h1 {
+    color: #12355b;
+
+    font-size: 28px;
+
+    line-height: 1.3;
+
+    margin-bottom: 6px;
+}
+
+
+.login-card h2 {
+    color: #2563eb;
+
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+
+.login-description {
+    color: #666;
+
+    font-size: 14px;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group {
+    text-align: left;
+
+    margin-bottom: 18px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #333;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.form-group input {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: #ffffff;
+
+    transition: 0.3s;
+}
+
+
+.form-group input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-button {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.login-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   LOGIN MESSAGE
+========================================================= */
+
+.login-message {
+    min-height: 25px;
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.login-message.success {
+    color: #15803d;
+}
+
+
+.login-message.error {
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   LOGIN INFORMATION
+========================================================= */
+
+.login-info {
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e5e7eb;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+.login-info p {
+    margin: 7px 0;
+}
+
+
+/* =========================================================
+   MAIN HEADER
+========================================================= */
+
+.header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 999;
+
+    width: 100%;
+
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 14px 6%;
+
+    background: #12355b;
+
+    color: white;
+
+    box-shadow:
+        0 3px 15px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+.logo {
+    font-size: 21px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+#navmenu {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+#navmenu a {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+#navmenu a:hover {
+    color: #93c5fd;
+}
+
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+.menu-btn {
+    display: none;
+
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+.menu-btn:hover {
+    background:
+        rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   LOGOUT BUTTON
+========================================================= */
+
+.logout-btn {
+    padding: 9px 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.logout-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 82vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 70px 6%;
+
+    text-align: center;
 
     background:
         linear-gradient(
             135deg,
-            #caf0f8,
-            #ffffff,
-            #ade8f4
+            #dbeafe,
+            #eff6ff,
+            #f8fafc
         );
 }
 
 
 .hero-content {
+    width: 100%;
+
     max-width: 850px;
 }
 
 
-.welcome {
-    color: #0077b6;
-
-    font-weight: bold;
-
-    font-size: 18px;
+.hero-icon {
+    font-size: 65px;
 
     margin-bottom: 15px;
 }
 
 
 .hero h1 {
-    font-size: 55px;
+    color: #12355b;
+
+    font-size: 50px;
 
     line-height: 1.15;
-
-    color: #023047;
 
     margin-bottom: 20px;
 }
 
 
-.hero p:not(.welcome) {
+.hero p {
+    max-width: 700px;
+
+    margin: 0 auto 30px;
+
     color: #555;
 
-    font-size: 18px;
-
-    max-width: 650px;
-
-    margin:
-        0
-        auto
-        30px;
+    font-size: 19px;
 }
 
 
-.hero-btn {
+.btn {
     display: inline-block;
 
-    text-decoration: none;
+    padding: 13px 25px;
 
-    padding:
-        14px
-        28px;
+    border-radius: 9px;
 
-    border-radius: 8px;
-
-    background: #0077b6;
+    background: #2563eb;
 
     color: white;
 
-    font-weight: bold;
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition: 0.3s;
 }
 
 
-.hero-btn:hover {
-    background: #023e8a;
+.btn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
 }
 
 
-/* =====================================================
-   SECTIONS
-===================================================== */
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
 
-.section {
-    padding:
-        80px
-        7%;
+section {
+    padding: 75px 6%;
 }
 
 
 .section-title {
+    margin-bottom: 12px;
+
+    color: #12355b;
+
     text-align: center;
 
-    margin-bottom: 40px;
+    font-size: 35px;
 }
 
 
-.section-title h2 {
-    color: #0077b6;
+.section-description {
+    margin-bottom: 35px;
 
-    font-size: 38px;
-
-    margin-bottom: 10px;
-}
-
-
-.section-title p {
     color: #666;
+
+    text-align: center;
 }
 
 
-/* =====================================================
+/* =========================================================
    CONVERTER
-===================================================== */
+========================================================= */
 
-.converter-box {
-    max-width: 900px;
+.converter-section {
+    background: white;
+}
+
+
+.converter-container {
+    width: 100%;
+
+    max-width: 950px;
 
     margin: auto;
+}
 
-    background: white;
 
+.converter-card {
     padding: 35px;
 
-    border-radius: 20px;
+    background: #f8fafc;
+
+    border-radius: 18px;
 
     box-shadow:
         0 10px 35px
-        rgba(0,0,0,0.10);
+        rgba(0, 0, 0, 0.08);
 }
 
 
-.amount-box label,
-.currency-box label {
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.amount-box {
+    margin-bottom: 25px;
+}
+
+
+.amount-box label {
     display: block;
 
-    font-weight: bold;
-
     margin-bottom: 8px;
+
+    font-weight: 700;
+
+    color: #333;
 }
 
 
 .amount-box input {
     width: 100%;
 
-    padding: 15px;
+    padding: 14px;
 
-    border: 1px solid #ccd6dd;
+    border: 1px solid #d1d5db;
 
-    border-radius: 8px;
-
-    font-size: 18px;
+    border-radius: 10px;
 
     outline: none;
+
+    font-size: 17px;
 }
 
 
-.currency-row {
+.amount-box input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   CURRENCY ROW
+========================================================= */
+
+.converter-row {
     display: grid;
 
     grid-template-columns:
         1fr
-        60px
+        70px
         1fr;
-
-    gap: 20px;
 
     align-items: end;
 
-    margin-top: 25px;
+    gap: 20px;
 }
 
 
-.currency-box select {
+.currency-box label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #333;
+
+    font-weight: 700;
+}
+
+
+.currency-select {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+.currency-flag {
+    position: absolute;
+
+    left: 13px;
+
+    z-index: 2;
+
+    font-size: 22px;
+
+    pointer-events: none;
+}
+
+
+.currency-select select {
     width: 100%;
 
-    padding: 14px 10px;
+    padding: 14px 12px 14px 50px;
 
-    border: 1px solid #ccd6dd;
+    border: 1px solid #d1d5db;
 
-    border-radius: 8px;
-
-    font-size: 15px;
+    border-radius: 10px;
 
     background: white;
+
+    outline: none;
+
+    font-size: 15px;
 
     cursor: pointer;
 }
 
 
-.select-wrapper {
+.currency-select select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================================================
+   SWAP
+========================================================= */
+
+.swap-container {
     display: flex;
 
     align-items: center;
 
-    gap: 8px;
+    justify-content: center;
+
+    padding-bottom: 2px;
 }
 
 
-.flag {
-    font-size: 28px;
-}
+#swapBtn {
+    width: 48px;
 
+    height: 48px;
 
-.swap-btn {
-    width: 55px;
-
-    height: 55px;
+    border: none;
 
     border-radius: 50%;
 
-    border: none;
-
-    background: #caf0f8;
-
-    color: #0077b6;
-
-    font-size: 27px;
-
-    cursor: pointer;
-}
-
-
-.swap-btn:hover {
-    background: #90e0ef;
-}
-
-
-.convert-btn {
-    width: 100%;
-
-    margin-top: 30px;
-
-    padding: 16px;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #0077b6,
-            #0096c7
-        );
+    background: #12355b;
 
     color: white;
 
-    font-size: 17px;
-
-    font-weight: bold;
+    font-size: 24px;
 
     cursor: pointer;
+
+    transition: 0.3s;
 }
 
 
-.convert-btn:hover {
-    opacity: 0.9;
+#swapBtn:hover {
+    background: #2563eb;
+
+    transform: rotate(180deg);
 }
 
+
+/* =========================================================
+   CONVERT BUTTON
+========================================================= */
+
+.converter-actions {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 30px;
+}
+
+
+#convertBtn {
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+#convertBtn:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   CONVERSION RESULT
+========================================================= */
 
 .conversion-result {
     margin-top: 25px;
-}
 
-
-.result-placeholder {
-    text-align: center;
-
-    color: #777;
-}
-
-
-.result-card {
-    background: #e8f7fc;
-
-    border-left:
-        5px solid
-        #0077b6;
-
-    padding: 25px;
+    padding: 20px;
 
     border-radius: 10px;
 
+    background: #e0f2fe;
+
+    color: #12355b;
+
     text-align: center;
+
+    font-size: 18px;
+
+    font-weight: 500;
 }
 
 
-.result-card .main-result {
-    font-size: 32px;
+.conversion-result.success {
+    background: #dcfce7;
 
-    color: #0077b6;
-
-    font-weight: bold;
-
-    margin: 10px 0;
+    color: #166534;
 }
 
 
-.result-card .rate-text {
-    color: #555;
+.conversion-result.error {
+    background: #fee2e2;
+
+    color: #991b1b;
 }
 
 
-/* =====================================================
+/* =========================================================
    RATES
-===================================================== */
+========================================================= */
 
 .rates-section {
-    background: #eef9fc;
+    background: #f4f7fb;
 }
 
 
-.rates-grid {
-    max-width: 1100px;
+.rates-container-wrapper {
+    max-width: 1200px;
 
     margin: auto;
+}
 
+
+.rates-container {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(
+            auto-fit,
+            minmax(
+                190px,
+                1fr
+            )
+        );
 
     gap: 20px;
 }
 
 
 .rate-card {
-    background: white;
+    padding: 25px 15px;
 
-    padding: 25px;
+    background: white;
 
     border-radius: 15px;
 
-    box-shadow:
-        0 5px 20px
-        rgba(0,0,0,0.08);
-
     text-align: center;
+
+    box-shadow:
+        0 7px 20px
+        rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
 }
 
 
-.rate-card .rate-flag {
-    font-size: 35px;
+.rate-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+.rate-flag {
+    margin-bottom: 8px;
+
+    font-size: 42px;
 }
 
 
 .rate-card h3 {
-    color: #0077b6;
+    margin-bottom: 3px;
 
-    margin: 8px 0;
+    color: #12355b;
 }
 
 
 .rate-card p {
-    color: #555;
+    margin-bottom: 12px;
+
+    color: #777;
+
+    font-size: 13px;
 }
 
 
-.rate-value {
-    font-size: 22px;
+.rate-card strong {
+    color: #2563eb;
 
-    font-weight: bold;
-
-    color: #023047;
+    font-size: 14px;
 }
 
 
-.rates-status {
-    text-align: center;
-
-    margin-top: 25px;
+.rate-status {
+    margin-top: 20px;
 
     color: #666;
+
+    text-align: center;
+
+    font-size: 14px;
 }
 
 
-/* =====================================================
+/* =========================================================
    ABOUT
-===================================================== */
+========================================================= */
 
-.about-content {
-    max-width: 1100px;
+.about-section {
+    background: white;
+}
+
+
+.about-container {
+    max-width: 1150px;
 
     margin: auto;
+}
 
+
+.about-intro {
+    max-width: 800px;
+
+    margin: 0 auto 35px;
+
+    color: #555;
+
+    text-align: center;
+
+    font-size: 17px;
+}
+
+
+.about-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(
+            auto-fit,
+            minmax(
+                220px,
+                1fr
+            )
+        );
 
-    gap: 25px;
+    gap: 20px;
 }
 
 
 .about-card {
-    background: white;
+    padding: 30px 20px;
 
-    padding: 30px;
-
-    text-align: center;
+    background: #f8fafc;
 
     border-radius: 15px;
 
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,0.08);
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+
+.about-card:hover {
+    transform: translateY(-5px);
 }
 
 
 .about-icon {
-    font-size: 45px;
+    margin-bottom: 12px;
 
-    margin-bottom: 15px;
+    font-size: 40px;
 }
 
 
 .about-card h3 {
-    color: #0077b6;
+    margin-bottom: 8px;
 
-    margin-bottom: 10px;
+    color: #12355b;
 }
 
 
 .about-card p {
     color: #666;
+
+    font-size: 14px;
 }
 
 
-/* =====================================================
+/* =========================================================
    CONTACT
-===================================================== */
+========================================================= */
 
 .contact-section {
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #edfaff
-        );
+    background: #f4f7fb;
 }
 
 
-.contact-cards {
+.contact-container {
     max-width: 1100px;
 
-    margin:
-        0
-        auto
-        40px;
+    margin: auto;
+}
 
+
+.contact-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        1fr
+        1fr;
 
-    gap: 25px;
+    gap: 30px;
+
+    margin-top: 35px;
 }
 
 
 .contact-card {
+    padding: 30px;
+
     background: white;
-
-    padding: 28px;
-
-    text-align: center;
 
     border-radius: 15px;
 
     box-shadow:
-        0 8px 25px
-        rgba(0,0,0,0.08);
-}
-
-
-.contact-icon {
-    font-size: 38px;
-
-    margin-bottom: 10px;
+        0 7px 20px
+        rgba(0, 0, 0, 0.07);
 }
 
 
 .contact-card h3 {
-    color: #0077b6;
+    margin-bottom: 12px;
 
-    margin-bottom: 8px;
+    color: #12355b;
+
+    font-size: 24px;
 }
 
 
-.contact-card p {
+.contact-card > p {
+    color: #666;
+
+    margin-bottom: 20px;
+}
+
+
+.contact-info p {
+    margin: 12px 0;
+
     color: #555;
-
-    word-break: break-word;
 }
 
 
-.contact-form-box {
-    max-width: 850px;
+/* =========================================================
+   CONTACT FORM
+========================================================= */
 
-    margin: auto;
+.contact-form {
+    display: flex;
 
-    background: white;
+    flex-direction: column;
 
-    padding: 35px;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,0.10);
+    gap: 15px;
 }
 
 
-.contact-form-box h3 {
-    text-align: center;
-
-    color: #0077b6;
-
-    font-size: 25px;
-
-    margin-bottom: 25px;
-}
-
-
-.contact-form-box label {
-    display: block;
-
-    font-weight: bold;
-
-    margin:
-        17px
-        0
-        7px;
-}
-
-
-.contact-form-box input,
-.contact-form-box textarea {
+.contact-form input,
+.contact-form textarea {
     width: 100%;
 
-    padding: 14px;
+    padding: 13px;
 
-    border:
-        1px solid
-        #ccd6dd;
+    border: 1px solid #d1d5db;
 
-    border-radius: 8px;
-
-    font-size: 16px;
-
-    font-family: inherit;
+    border-radius: 9px;
 
     outline: none;
+
+    font-size: 15px;
 }
 
 
-.contact-form-box input:focus,
-.contact-form-box textarea:focus {
-    border-color: #0077b6;
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.1);
 }
 
 
-.contact-form-box textarea {
+.contact-form textarea {
+    min-height: 140px;
+
     resize: vertical;
 }
 
 
-.send-message-btn {
-    width: 100%;
-
-    padding: 16px;
-
-    margin-top: 25px;
+.contact-form button {
+    padding: 13px;
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
-    background:
-        linear-gradient(
-            90deg,
-            #0077b6,
-            #0096c7
-        );
+    background: #2563eb;
 
     color: white;
 
-    font-size: 17px;
-
-    font-weight: bold;
+    font-weight: 700;
 
     cursor: pointer;
+
+    transition: 0.3s;
 }
 
 
-.send-message-btn:hover {
-    opacity: 0.9;
+.contact-form button:hover {
+    background: #1d4ed8;
 }
 
 
-.send-message-btn:disabled {
-    opacity: 0.6;
+.contact-form button:disabled {
+    opacity: 0.7;
 
     cursor: not-allowed;
 }
 
 
-/* CONTACT RESULT */
+#contactResult {
+    min-height: 20px;
 
-.contact-result {
-    margin-top: 20px;
+    text-align: center;
+
+    color: #15803d;
+
+    font-size: 14px;
+
+    font-weight: 600;
 }
 
 
-.contact-success {
-    padding: 20px;
-
-    background: #e8f8ed;
-
-    border:
-        1px solid
-        #67b978;
-
-    border-radius: 10px;
-
-    color: #176b2c;
-
-    line-height: 1.8;
-}
-
-
-.contact-success h4 {
-    font-size: 20px;
-
-    margin-bottom: 10px;
-}
-
-
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
-.footer {
-    background: #023047;
+footer {
+    padding: 28px 6%;
+
+    background: #12355b;
 
     color: white;
 
-    padding: 35px 20px;
-
     text-align: center;
+
+    font-size: 14px;
 }
 
 
-.footer h3 {
-    margin-bottom: 5px;
+footer p {
+    margin: 4px 0;
 }
 
 
-.footer p {
-    color: #d9edf5;
-
-    margin-top: 8px;
-}
-
-
-/* =====================================================
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+
+    /* HEADER */
 
     .header {
-        flex-direction: column;
+        padding: 12px 5%;
 
-        gap: 15px;
-    }
-
-
-    .rates-grid,
-    .about-content,
-    .contact-cards {
-        grid-template-columns: 1fr 1fr;
-    }
-
-
-    .hero h1 {
-        font-size: 43px;
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    .section {
-        padding:
-            55px
-            18px;
-    }
-
-
-    nav {
-        justify-content: center;
-
-        gap: 12px;
-    }
-
-
-    nav a {
-        font-size: 13px;
+        flex-wrap: wrap;
     }
 
 
     .logo {
-        font-size: 19px;
+        max-width: calc(100% - 60px);
+
+        font-size: 18px;
+
+        white-space: normal;
     }
 
 
+    .menu-btn {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    #navmenu {
+        display: none;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0;
+
+        margin-top: 12px;
+
+        padding: 10px 0;
+    }
+
+
+    #navmenu.active {
+        display: flex;
+    }
+
+
+    #navmenu a {
+        padding: 12px 5px;
+
+        border-top:
+            1px solid
+            rgba(255, 255, 255, 0.12);
+    }
+
+
+    #navmenu .logout-btn {
+        margin-top: 10px;
+    }
+
+
+    /* HERO */
+
     .hero {
-        min-height: 500px;
+        min-height: 70vh;
+
+        padding: 60px 5%;
+    }
+
+
+    .hero-icon {
+        font-size: 50px;
     }
 
 
     .hero h1 {
-        font-size: 34px;
+        font-size: 35px;
     }
 
 
-    .hero p:not(.welcome) {
+    .hero p {
         font-size: 16px;
     }
 
 
-    .section-title h2 {
-        font-size: 30px;
+    /* SECTIONS */
+
+    section {
+        padding: 55px 5%;
     }
 
 
-    .currency-row {
+    .section-title {
+        font-size: 29px;
+    }
+
+
+    /* CONVERTER */
+
+    .converter-card {
+        padding: 25px 18px;
+    }
+
+
+    .converter-row {
         grid-template-columns: 1fr;
 
-        gap: 15px;
+        gap: 18px;
     }
 
 
-    .swap-btn {
-        margin: auto;
+    .swap-container {
+        padding: 0;
+    }
 
+
+    #swapBtn {
         transform: rotate(90deg);
     }
 
 
-    .rates-grid,
-    .about-content,
-    .contact-cards {
+    #swapBtn:hover {
+        transform: rotate(270deg);
+    }
+
+
+    /* CONTACT */
+
+    .contact-grid {
         grid-template-columns: 1fr;
     }
+}
 
 
-    .converter-box,
-    .contact-form-box {
-        padding: 22px 18px;
-    }
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
+@media (max-width: 480px) {
 
-    .login-container {
+    .login-card {
         padding: 28px 20px;
     }
 
+
+    .login-logo {
+        width: 70px;
+
+        height: 70px;
+
+        font-size: 38px;
+    }
+
+
+    .login-card h1 {
+        font-size: 22px;
+    }
+
+
+    .login-card h2 {
+        font-size: 22px;
+    }
+
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+
+    .hero p {
+        font-size: 15px;
+    }
+
+
+    .section-title {
+        font-size: 26px;
+    }
+
+
+    .converter-actions {
+        width: 100%;
+    }
+
+
+    #convertBtn {
+        width: 100%;
+    }
+
+
+    .contact-card {
+        padding: 22px 18px;
+    }
 }
