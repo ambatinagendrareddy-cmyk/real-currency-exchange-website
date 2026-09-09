@@ -1,139 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Login - World Currency Exchange</title>
+    <title>Login | World Currency Exchange</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
-<body class="login-page">
+<body class="auth-page">
 
-    <div class="login-container">
+    <div class="background-effects">
+        <span class="glow glow-one"></span>
+        <span class="glow glow-two"></span>
+        <span class="glow glow-three"></span>
+    </div>
 
-        <div class="login-card">
+    <main class="auth-container">
 
-            <div class="login-logo">
-                🌍
+        <section class="auth-card">
+
+            <div class="brand">
+                <div class="brand-icon">🌍</div>
+
+                <div>
+                    <h1>WORLD CURRENCY</h1>
+                    <span>EXCHANGE</span>
+                </div>
             </div>
 
-            <h1>
-                World Currency Exchange
-            </h1>
+            <div class="auth-heading">
+                <h2>Welcome Back</h2>
+                <p>Login to continue to your currency dashboard.</p>
+            </div>
 
-            <h2>
-                Login
-            </h2>
-
-            <p class="login-description">
-                Enter your details to access the currency exchange application.
-            </p>
-
-
-            <form id="loginForm">
-
-                <!-- NAME -->
+            <form id="loginForm" autocomplete="off" novalidate>
 
                 <div class="form-group">
 
-                    <label for="loginName">
-                        Full Name
-                    </label>
+                    <label for="loginEmail">Email Address</label>
 
-                    <input
-                        type="text"
-                        id="loginName"
-                        placeholder="Enter your name"
-                        required
-                    >
+                    <div class="input-wrapper">
+                        <span class="input-icon">✉</span>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            name="loginEmail"
+                            placeholder="Enter your email"
+                            autocomplete="off"
+                            value=""
+                            required
+                        >
+                    </div>
 
                 </div>
-
-
-                <!-- EMAIL -->
 
                 <div class="form-group">
 
-                    <label for="loginEmail">
-                        Email Address
-                    </label>
+                    <label for="loginPassword">Password</label>
 
-                    <input
-                        type="email"
-                        id="loginEmail"
-                        placeholder="Enter your email"
-                        required
-                    >
+                    <div class="input-wrapper">
 
-                </div>
+                        <span class="input-icon">🔒</span>
 
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            name="loginPassword"
+                            placeholder="Enter your password"
+                            autocomplete="new-password"
+                            value=""
+                            required
+                        >
 
-                <!-- PASSWORD -->
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            data-target="loginPassword"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
 
-                <div class="form-group">
-
-                    <label for="loginPassword">
-                        Password
-                    </label>
-
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        placeholder="Enter your password"
-                        minlength="6"
-                        required
-                    >
+                    </div>
 
                 </div>
 
+                <div class="login-extra">
+                    <span>🔐 Secure Demo Login</span>
 
-                <!-- LOGIN BUTTON -->
+                    <a href="forgot.html">
+                        Forgot Password?
+                    </a>
+                </div>
 
-                <button
-                    type="submit"
-                    class="login-button"
-                >
-                    Login
+                <div id="loginMessage" class="form-message"></div>
+
+                <button type="submit" class="primary-button">
+                    <span>Login</span>
+                    <span>→</span>
                 </button>
 
             </form>
 
-
-            <p id="loginMessage"
-               class="login-message">
-            </p>
-
-
-            <div class="login-info">
-
-                <p>
-                    🔐 Secure Login
-                </p>
-
-                <p>
-                    💱 Access Currency Converter
-                </p>
-
-                <p>
-                    📊 View Live Exchange Rates
-                </p>
-
+            <div class="auth-divider">
+                <span>OR</span>
             </div>
 
-        </div>
+            <div class="register-box">
+                <p>Don't have an account?</p>
 
-    </div>
+                <a href="register.html" class="secondary-button">
+                    Create New Account
+                </a>
+            </div>
 
+            <footer class="auth-footer">
+                © 2026 World Currency Exchange
+            </footer>
+
+        </section>
+
+    </main>
 
     <script src="script.js"></script>
 
 </body>
-
 </html>
